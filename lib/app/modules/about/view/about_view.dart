@@ -2,199 +2,217 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/app/utils/app_links.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
-class AboutView extends StatelessWidget {
+class AboutView extends StatefulWidget {
   const AboutView({super.key});
 
   @override
+  State<AboutView> createState() => _AboutViewState();
+}
+
+class _AboutViewState extends State<AboutView> with TickerProviderStateMixin {
+  late AnimationController _imageController;
+  late AnimationController _chipController;
+  late Animation<Offset> _imageOffsetAnimation;
+  late Animation<double> _chipAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _imageController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+
+    _chipController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _imageOffsetAnimation = Tween<Offset>(
+      begin: const Offset(-0.2, 0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _imageController,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    _chipAnimation = CurvedAnimation(
+      parent: _chipController,
+      curve: Curves.easeInOut,
+    );
+
+    _imageController.forward();
+    _chipController.forward();
+  }
+
+  @override
+  void dispose() {
+    _imageController.dispose();
+    _chipController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Responsive(
       mobile: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: _bodyMobile(),
+        padding: const EdgeInsets.all(20),
+        child: _bodyMobile(colorScheme),
       ),
       desktop: Padding(
-        padding:
-            const EdgeInsets.only(top: 40, left: 100, bottom: 40, right: 20),
-        child: _body(),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 100),
+        child: _bodyDesktop(colorScheme),
       ),
       tablet: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: _body(),
+        padding: const EdgeInsets.all(40),
+        child: _bodyDesktop(colorScheme),
       ),
     );
   }
 
-  _body() {
+  Widget _bodyDesktop(ColorScheme colorScheme) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image.network(AppLinks.developer),
-        const Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'About Me',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        Expanded(
+          flex: 1,
+          child: SlideTransition(
+            position: _imageOffsetAnimation,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                AppLinks.developer,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-                ''' With 1 year of experience in Flutter development and design, \n I help businesses create impactful mobile solutions that drive results. '''),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.web),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Web Development'),
-                  ],
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.design_services),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Ui/Ux Design'),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.phone_iphone),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Mobile Development'),
-                  ],
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.storage),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Backend Development'),
-                  ],
-                ),
-              ],
-            )
-          ],
-        )
+          ),
+        ),
+        const SizedBox(width: 40),
+        Expanded(
+          flex: 2,
+          child: _aboutContent(colorScheme),
+        ),
       ],
     );
   }
 
-  _bodyMobile() {
+  Widget _bodyMobile(ColorScheme colorScheme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.network(AppLinks.developer),
-        const Column(
-          mainAxisSize: MainAxisSize.max,
+        AnimatedOpacity(
+          opacity: 1,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeIn,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.network(
+              AppLinks.developer,
+              height: 250,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        _aboutContent(colorScheme),
+      ],
+    );
+  }
+
+  Widget _aboutContent(ColorScheme colorScheme) {
+    return Card(
+      color: colorScheme.surface,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'About Me',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 16),
             Text(
-                ''' With 1 year of experience in Flutter development and design, \n I help businesses create impactful mobile solutions that drive results. '''),
-            SizedBox(
-              height: 10,
+              "With 1 year of experience in Flutter development and design, "
+              "I help businesses create impactful mobile solutions that drive results.",
+              style: TextStyle(
+                fontSize: 16,
+                color: colorScheme.onSurface.withOpacity(0.8),
+                height: 1.6,
+              ),
             ),
-            Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.web),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Web Development'),
-                  ],
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.design_services),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Ui/Ux Design'),
-                  ],
-                ),
-              ],
+            const SizedBox(height: 24),
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: List.generate(_skills.length, (index) {
+                final skill = _skills[index];
+                return AnimatedBuilder(
+                  animation: _chipAnimation,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: 1 + (_chipAnimation.value * 0.05),
+                      child: Opacity(
+                        opacity: _chipAnimation.value,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: _skillChip(
+                    skill['icon'] as IconData,
+                    skill['label'] as String,
+                    colorScheme,
+                  ),
+                );
+              }),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.phone_iphone),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Mobile Development'),
-                  ],
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.storage),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Backend Development'),
-                  ],
-                ),
-              ],
-            )
           ],
-        )
-      ],
+        ),
+      ),
+    );
+  }
+
+  Widget _skillChip(IconData icon, String label, ColorScheme colorScheme) {
+    return Chip(
+      avatar: Icon(
+        icon,
+        color: colorScheme.onPrimary,
+        size: 20,
+      ),
+      label: Text(
+        label,
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      backgroundColor: colorScheme.primary,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     );
   }
 }
+
+final List<Map<String, dynamic>> _skills = [
+  {'icon': Icons.web, 'label': 'Web Development'},
+  {'icon': Icons.design_services, 'label': 'UI/UX Design'},
+  {'icon': Icons.phone_iphone, 'label': 'Mobile Development'},
+  {'icon': Icons.storage, 'label': 'Backend Development'},
+];

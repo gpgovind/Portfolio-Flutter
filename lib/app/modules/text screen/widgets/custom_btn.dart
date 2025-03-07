@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+
 class CustomBtn extends StatefulWidget {
   const CustomBtn({super.key});
 
@@ -12,6 +14,13 @@ class _CustomBtnState extends State<CustomBtn> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    final Color normalBackground = colorScheme.surface;
+    final Color hoverBackground = colorScheme.primary;
+    final Color normalTextColor = colorScheme.onSurface;
+    final Color hoverTextColor = colorScheme.onPrimary;
+
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
@@ -21,8 +30,11 @@ class _CustomBtnState extends State<CustomBtn> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
-            color: isHovered ? Colors.black : Colors.grey.shade300,
-            border: Border.all(color: Colors.white, width: 2),
+            color: isHovered ? hoverBackground : normalBackground,
+            border: Border.all(
+              color: colorScheme.primary.withOpacity(0.8),
+              width: 2,
+            ),
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
@@ -35,7 +47,7 @@ class _CustomBtnState extends State<CustomBtn> {
               child: Text(
                 'View My Work',
                 style: TextStyle(
-                  color: isHovered ? Colors.white : Colors.black,
+                  color: isHovered ? hoverTextColor : normalTextColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/core/app_color.dart';
 
 class FooterScreen extends StatelessWidget {
   const FooterScreen({super.key});
@@ -7,34 +6,22 @@ class FooterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: const Column(
+      padding: const EdgeInsets.all(24),
+      color: const Color(0xFF0A192F),
+      child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Govind p',
-                style: TextStyle(color: AppColor.appBackground),
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.linked_camera_outlined,
-                    color: AppColor.appBackground,
-                  ),
-                  Icon(
-                    Icons.gite,
-                    color: AppColor.appBackground,
-                  )
-                ],
-              )
-            ],
-          ),
           Text(
-            '@ Govind p 2025 All rights reserved',
-            style: TextStyle(color: Colors.grey),
+            "© ${DateTime.now().year} Govind P. All rights reserved.",
+            style: TextStyle(
+              color: Colors.grey[400],
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "Made with ❤️ using Flutter",
+            style: TextStyle(
+              color: Colors.grey[400],
+            ),
           ),
         ],
       ),

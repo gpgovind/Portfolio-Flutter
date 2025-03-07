@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/core/app_color.dart';
 import 'package:portfolio/app/modules/card%20screen/widgets/card_widget.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
@@ -9,18 +8,24 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       width: screenWidth,
-      color: AppColor.cardScreen,
+      color: colorScheme.background, // Adapts to light/dark theme
       child: Responsive(
         mobile: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Select Project',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: colorScheme.onBackground,
+                ),
               ),
               _body(),
             ],
@@ -31,9 +36,13 @@ class CardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Select Project',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: colorScheme.onBackground,
+                ),
               ),
               _bodyDesktop()
             ],
@@ -44,9 +53,13 @@ class CardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Select Project',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: colorScheme.onBackground,
+                ),
               ),
               _body(),
             ],
@@ -56,8 +69,10 @@ class CardScreen extends StatelessWidget {
     );
   }
 
-  _body() {
+  Widget _body() {
     return Wrap(
+      spacing: 16,
+      runSpacing: 16,
       children: List.generate(
         3,
         (index) => const ProjectCard(),
@@ -65,8 +80,10 @@ class CardScreen extends StatelessWidget {
     );
   }
 
-  _bodyDesktop() {
+  Widget _bodyDesktop() {
     return Wrap(
+      spacing: 24,
+      runSpacing: 24,
       children: List.generate(
         3,
         (index) => const ProjectCard(),

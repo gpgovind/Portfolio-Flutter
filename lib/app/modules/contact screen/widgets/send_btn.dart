@@ -42,6 +42,12 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    final Color defaultBackgroundColor =
+        widget.backgroundColor ?? colorScheme.primary;
+    final Color defaultTextColor = widget.textColor ?? colorScheme.onPrimary;
+
     return GestureDetector(
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
@@ -53,12 +59,12 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
         child: ElevatedButton(
           onPressed: widget.onPressed,
           style: ElevatedButton.styleFrom(
-            overlayColor: Colors.white,
-            backgroundColor: widget.backgroundColor ?? Colors.black,
+            overlayColor: colorScheme.primary.withOpacity(0.1),
+            backgroundColor: defaultBackgroundColor,
             padding: widget.padding ??
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 8.0),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
             ),
           ),
           child: Row(
@@ -73,8 +79,8 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
                 widget.text,
                 style: widget.textStyle ??
                     TextStyle(
-                      color: widget.textColor ?? Colors.white,
-                      fontSize: widget.fontSize ?? 18.0,
+                      color: defaultTextColor,
+                      fontSize: widget.fontSize ?? 16.0,
                       fontWeight: widget.textFontWeight ?? FontWeight.w700,
                     ),
               ),

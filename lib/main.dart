@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Portfolio',
-      theme: AppTheme.appTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: const HomeView(),
     );

@@ -13,8 +13,8 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    // Responsive sizes
     double cardWidth = screenWidth < 600
         ? screenWidth * 0.9
         : screenWidth < 1200
@@ -38,12 +38,12 @@ class _ProjectCardState extends State<ProjectCard> {
           width: cardWidth,
           height: cardHeight,
           decoration: BoxDecoration(
-            color: Colors.grey.shade900,
+            color: colorScheme.surface, // Dynamic background
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               if (isHovered)
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withOpacity(0.2),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
@@ -55,7 +55,7 @@ class _ProjectCardState extends State<ProjectCard> {
               Container(
                 height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade700,
+                  color: colorScheme.primary, // Adaptive header
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -63,7 +63,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 child: Text(
                   "Project Preview",
                   style: TextStyle(
-                    color: Colors.white70,
+                    color: colorScheme.onPrimary.withOpacity(0.8),
                     fontSize: descriptionFontSize,
                   ),
                 ),
@@ -76,7 +76,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     Text(
                       "E-commerce Platform",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: colorScheme.onSurface,
                         fontSize: titleFontSize,
                         fontWeight: FontWeight.bold,
                       ),
@@ -91,7 +91,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       secondChild: Text(
                         "Full-stack development of a modern e-commerce solution with responsive design, payment integration, and user dashboards.",
                         style: TextStyle(
-                          color: Colors.white70,
+                          color: colorScheme.onSurface.withOpacity(0.8),
                           fontSize: descriptionFontSize,
                         ),
                       ),
@@ -101,19 +101,22 @@ class _ProjectCardState extends State<ProjectCard> {
                       children: [
                         TextButton(
                           onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: colorScheme.primary,
+                          ),
                           child: Row(
                             children: [
                               Text(
                                 "View Case Study",
                                 style: TextStyle(
-                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: descriptionFontSize,
+                                  color: colorScheme.primary,
                                 ),
                               ),
                               const SizedBox(width: 6),
-                              const Icon(Icons.arrow_right_alt,
-                                  color: Colors.white),
+                              Icon(Icons.arrow_right_alt,
+                                  color: colorScheme.primary),
                             ],
                           ),
                         ),
