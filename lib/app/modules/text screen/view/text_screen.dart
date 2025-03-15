@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gif_view/gif_view.dart';
-import 'package:portfolio/app/core/app_color.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/app/modules/text%20screen/widgets/custom_btn.dart';
+import 'package:portfolio/app/utils/app_links.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
-
-import 'package:flutter/material.dart';
 
 class TextScreen extends StatelessWidget {
   const TextScreen({super.key});
@@ -31,6 +29,7 @@ class TextScreen extends StatelessWidget {
 
   Widget _textBody(ColorScheme colorScheme) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
           child: Column(
@@ -59,8 +58,27 @@ class TextScreen extends StatelessWidget {
             ],
           ),
         ),
-        Image.asset('assets/gif/capture.gif'),
-        Spacer()
+        const SizedBox(
+          width: 10,
+        ),
+        CircleAvatar(
+            radius: 150,
+            backgroundColor: Colors.transparent,
+            // backgroundImage: AssetImage('assets/gif/capture.gif'),
+            child: Stack(
+              children: [
+                Lottie.asset(
+                  AppLinks.profileBK,
+                  fit: BoxFit.cover,
+                ),
+                Center(
+                  child: Image.asset(
+                    AppLinks.profile,
+                  ),
+                )
+              ],
+            )),
+        const Spacer()
       ],
     );
   }

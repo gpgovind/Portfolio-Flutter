@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ProjectCard extends StatefulWidget {
-  const ProjectCard({super.key});
+  final String projectName;
+  final String description;
+  final String image;
+  const ProjectCard(
+      {super.key,
+      required this.projectName,
+      required this.description,
+      required this.image});
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();
@@ -56,17 +63,11 @@ class _ProjectCardState extends State<ProjectCard> {
                 height: 150,
                 decoration: BoxDecoration(
                   color: colorScheme.primary, // Adaptive header
+                  image: DecorationImage(image: AssetImage(widget.image)),
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
                 ),
                 alignment: Alignment.center,
-                child: Text(
-                  "Project Preview",
-                  style: TextStyle(
-                    color: colorScheme.onPrimary.withOpacity(0.8),
-                    fontSize: descriptionFontSize,
-                  ),
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -74,7 +75,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "E-commerce Platform",
+                      widget.projectName,
                       style: TextStyle(
                         color: colorScheme.onSurface,
                         fontSize: titleFontSize,
@@ -89,7 +90,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           : CrossFadeState.showFirst,
                       firstChild: const SizedBox.shrink(),
                       secondChild: Text(
-                        "Full-stack development of a modern e-commerce solution with responsive design, payment integration, and user dashboards.",
+                        widget.description,
                         style: TextStyle(
                           color: colorScheme.onSurface.withOpacity(0.8),
                           fontSize: descriptionFontSize,

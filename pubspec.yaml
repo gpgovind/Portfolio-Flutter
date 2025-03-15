@@ -38,7 +38,8 @@ dependencies:
   webview_flutter: ^4.0.0
   webview_flutter_web: ^0.2.0   
   flutter_html: ^3.0.0-beta.2 
-  gif_view: ^1.0.0
+  gif_view: ^1.0.0 
+  lottie: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -66,13 +67,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
 
-    - assets/shaders/background.frag
-    - assets/gif/capture.gif
+   
+    # - assets/gif/capture.gif
+    # - assets/shaders/background.glsl
+      - assets/gif/
+      - assets/image/
 
-flutter_shaders:
-  shaders:
-
-    - assets/shaders/background.frag
     
       
   #   - images/a_dot_ham.jpeg

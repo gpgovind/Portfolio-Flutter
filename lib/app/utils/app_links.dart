@@ -1,4 +1,7 @@
 class AppLinks {
-  static const developer =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5hCPi3jmDYnzd9g2qAmBaHeilVzINkWszTg&s';
+  static const profileBK = 'assets/gif/Animation - 1741598231090.json';
+  static const profile = 'assets/image/profile.png';
+  static const secondProject = 'assets/image/pixelsx.png';
+  static const firstProject = 'assets/image/mediWater.png';
+  static const flutterDev = 'assets/gif/flutter dev.json';
 }

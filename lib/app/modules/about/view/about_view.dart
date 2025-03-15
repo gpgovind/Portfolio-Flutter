@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/app/utils/app_links.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
@@ -86,9 +87,8 @@ class _AboutViewState extends State<AboutView> with TickerProviderStateMixin {
             position: _imageOffsetAnimation,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network(
-                AppLinks.developer,
-                height: 300,
+              child: Lottie.asset(
+                AppLinks.flutterDev,
                 fit: BoxFit.cover,
               ),
             ),
@@ -113,9 +113,8 @@ class _AboutViewState extends State<AboutView> with TickerProviderStateMixin {
           curve: Curves.easeIn,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              AppLinks.developer,
-              height: 250,
+            child: Lottie.asset(
+              AppLinks.flutterDev,
               fit: BoxFit.cover,
             ),
           ),
@@ -147,15 +146,14 @@ class _AboutViewState extends State<AboutView> with TickerProviderStateMixin {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              "With 1 year of experience in Flutter development and design, "
-              "I help businesses create impactful mobile solutions that drive results.",
-              style: TextStyle(
-                fontSize: 16,
-                color: colorScheme.onSurface.withOpacity(0.8),
-                height: 1.6,
-              ),
-            ),
+          Text(
+  "Flutter developer with 1 year of experience seeking new opportunities. Skilled in iOS/Android deployment, state management (Riverpod, BLoC, GetX, Provider), Firebase, and RESTful APIs. Passionate about creating intuitive, scalable mobile solutions with clean code that delivers business value. Available immediately and eager to contribute to your team's success.",
+  style: TextStyle(
+    fontSize: 16,
+    color: colorScheme.onSurface.withOpacity(0.8),
+    height: 1.6,
+  ),
+),
             const SizedBox(height: 24),
             Wrap(
               spacing: 16,
@@ -214,5 +212,5 @@ final List<Map<String, dynamic>> _skills = [
   {'icon': Icons.web, 'label': 'Web Development'},
   {'icon': Icons.design_services, 'label': 'UI/UX Design'},
   {'icon': Icons.phone_iphone, 'label': 'Mobile Development'},
-  {'icon': Icons.storage, 'label': 'Backend Development'},
+ // {'icon': Icons.storage, 'label': 'Backend Development'},
 ];

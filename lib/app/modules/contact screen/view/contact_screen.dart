@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/core/app_color.dart';
 import 'package:portfolio/app/modules/contact%20screen/widgets/custom_textfield.dart';
 import 'package:portfolio/app/modules/contact%20screen/widgets/send_btn.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
-import 'package:flutter/material.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
