@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'package:portfolio/app/utils/app_links.dart';
 
 class CustomBtn extends StatefulWidget {
   const CustomBtn({super.key});
@@ -38,14 +39,12 @@ class _CustomBtnState extends State<CustomBtn> {
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
-            onTap: () {
-              // TODO: Add navigation or action here
-            },
+            onTap: _downloadResume,
             borderRadius: BorderRadius.circular(12),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               child: Text(
-                'View My Work',
+                'Download Resume',
                 style: TextStyle(
                   color: isHovered ? hoverTextColor : normalTextColor,
                   fontSize: 16,
@@ -57,5 +56,11 @@ class _CustomBtnState extends State<CustomBtn> {
         ),
       ),
     );
+  }
+
+  void _downloadResume() {
+    final html.AnchorElement anchor = html.AnchorElement(href: AppLinks.resume)
+      ..download = 'govind_resume.pdf';
+    anchor.click();
   }
 }

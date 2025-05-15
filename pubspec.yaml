@@ -40,6 +40,9 @@ dependencies:
   flutter_html: ^3.0.0-beta.2 
   gif_view: ^1.0.0 
   lottie: ^3.2.0
+  html: ^0.15.4 
+  animated_text_kit: ^4.2.3
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +53,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0 
+  flutter_lints: ^5.0.0 
   build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the

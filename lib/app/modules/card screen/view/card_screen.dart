@@ -8,63 +8,61 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      width: screenWidth,
-      color: colorScheme.background, // Adapts to light/dark theme
-      child: Responsive(
-        mobile: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Select Project',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: colorScheme.onBackground,
-                ),
+    return Responsive(
+      mobile: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Projects',
+              style: TextStyle(
+                 fontSize: 33,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.5,
               ),
-              _body(),
-            ],
-          ),
+            ),
+            _body(),
+          ],
         ),
-        desktop: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 230, bottom: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Select Project',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: colorScheme.onBackground,
-                ),
+      ),
+      desktop: Padding(
+        padding: const EdgeInsets.only(top: 40, left: 230, bottom: 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           Text(
+              'Projects',
+              style: TextStyle(
+                 fontSize: 33,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.5,
               ),
-              _bodyDesktop()
-            ],
-          ),
+            ),
+            _bodyDesktop()
+          ],
         ),
-        tablet: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Select Project',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: colorScheme.onBackground,
-                ),
+      ),
+      tablet: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           Text(
+              'Projects',
+              style: TextStyle(
+                 fontSize: 33,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.5,
               ),
-              _body(),
-            ],
-          ),
+            ),
+            _body(),
+          ],
         ),
       ),
     );

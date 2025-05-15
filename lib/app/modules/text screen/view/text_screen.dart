@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:portfolio/app/modules/text%20screen/widgets/custom_btn.dart';
@@ -22,7 +23,7 @@ class TextScreen extends StatelessWidget {
       ),
       mobile: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
-        child: _textBody(colorScheme),
+        child: _textBodyMobile(colorScheme),
       ),
     );
   }
@@ -35,22 +36,86 @@ class TextScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Flutter Developer & \nMobile App Enthusiast',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 33,
-                  color: colorScheme.onBackground, // Dynamic title color
-                ),
+              Column(
+                children: [
+                  Text(
+                    '''Hi I'm Govind  ''',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 38,
+                      color: colorScheme.onSurface, // Dynamic title color
+                    ),
+                  ),
+            
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.white,
+                      fontFamily: 'Horizon',
+                    ),
+                    child: AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        TyperAnimatedText('Mobile App Enthusiast'),
+                        TyperAnimatedText('Flutter Developer'),
+                      ],
+                      onTap: () {
+                        print("Tap Event");
+                      },
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 25),
-              Text(
-                '''Building seamless, high-performance mobile experiences with beautiful, \nresponsive design and powerful functionality.''',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: colorScheme.onSurface
-                      .withOpacity(0.8), // Subtle subtext color
+              const SizedBox(height: 30),
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 18,
+                    height: 1.6,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white.withOpacity(0.9),
+                  ),
+                  children: const [
+                    TextSpan(
+                      text: 'Building ',
+                    ),
+                    TextSpan(
+                      text: 'high-performance, cross-platform applications ',
+                      style: TextStyle(
+                   
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'with clean, ',
+                    ),
+                    TextSpan(
+                      text: 'user-focused interfaces ',
+                      style: TextStyle(
+             
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'and ',
+                    ),
+                    TextSpan(
+                      text: 'scalable architecture.',
+                      style: TextStyle(
+            
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' Specializing in Flutter to deliver ',
+                    ),
+                    TextSpan(
+                      text: 'seamless, high-quality experiences ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'across mobile and web platforms.',
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 25),
@@ -58,27 +123,140 @@ class TextScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
-        CircleAvatar(
-            radius: 150,
-            backgroundColor: Colors.transparent,
-            // backgroundImage: AssetImage('assets/gif/capture.gif'),
-            child: Stack(
-              children: [
-                Lottie.asset(
-                  AppLinks.profileBK,
-                  fit: BoxFit.cover,
-                ),
-                Center(
-                  child: Image.asset(
-                    AppLinks.profile,
+        Padding(
+          padding: const EdgeInsets.only(left: 40),
+          child: CircleAvatar(
+              radius: 150,
+              backgroundColor: Colors.transparent,
+              // backgroundImage: AssetImage('assets/gif/capture.gif'),
+              child: Stack(
+                children: [
+                  Lottie.asset(
+                    AppLinks.profileBK,
+                    fit: BoxFit.cover,
                   ),
-                )
-              ],
-            )),
+                  Center(
+                    child: Image.asset(
+                      AppLinks.profile,
+                    ),
+                  )
+                ],
+              )),
+        ),
         const Spacer()
+      ],
+    );
+  }
+  Widget _textBodyMobile(ColorScheme colorScheme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+              Padding(
+          padding: const EdgeInsets.only(left: 40),
+          child: CircleAvatar(
+              radius: 150,
+              backgroundColor: Colors.transparent,
+              // backgroundImage: AssetImage('assets/gif/capture.gif'),
+              child: Stack(
+                children: [
+                  Lottie.asset(
+                    AppLinks.profileBK,
+                    fit: BoxFit.cover,
+                  ),
+                  Center(
+                    child: Image.asset(
+                      AppLinks.profile,
+                    ),
+                  )
+                ],
+              )),
+        ),
+        const SizedBox(height: 40),
+        Column(
+          children: [
+            Text(
+              '''Hi I'm Govind  ''',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 38,
+                color: colorScheme.onSurface, // Dynamic title color
+              ),
+            ),
+      
+            DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 30.0,
+                color: Colors.white,
+                fontFamily: 'Horizon',
+              ),
+              child: AnimatedTextKit(
+                repeatForever: true,
+                animatedTexts: [
+                  TyperAnimatedText('Mobile App Enthusiast'),
+                  TyperAnimatedText('Flutter Developer'),
+                ],
+                onTap: () {
+                  print("Tap Event");
+                },
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 30),
+        RichText(
+          text: TextSpan(
+            style: TextStyle(
+              fontSize: 18,
+              height: 1.6,
+              fontWeight: FontWeight.w400,
+              color: Colors.white.withOpacity(0.9),
+            ),
+            children: const [
+              TextSpan(
+                text: 'Building ',
+              ),
+              TextSpan(
+                text: 'high-performance, cross-platform applications ',
+                style: TextStyle(
+             
+                ),
+              ),
+              TextSpan(
+                text: 'with clean, ',
+              ),
+              TextSpan(
+                text: 'user-focused interfaces ',
+                style: TextStyle(
+       
+                ),
+              ),
+              TextSpan(
+                text: 'and ',
+              ),
+              TextSpan(
+                text: 'scalable architecture.',
+                style: TextStyle(
+      
+                ),
+              ),
+              TextSpan(
+                text: ' Specializing in Flutter to deliver ',
+              ),
+              TextSpan(
+                text: 'seamless, high-quality experiences ',
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              TextSpan(
+                text: 'across mobile and web platforms.',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 25),
+        const CustomBtn(),
       ],
     );
   }

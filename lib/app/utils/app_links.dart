@@ -4,4 +4,7 @@ class AppLinks {
   static const secondProject = 'assets/image/pixelsx.png';
   static const firstProject = 'assets/image/mediWater.png';
   static const flutterDev = 'assets/gif/flutter dev.json';
+  static const resume = 'assets/image/Govind P resume.pdf';
+  static const flutter3dImage = 'assets/image/flutter.png';
+  static const backgroundPice = 'assets/image/background_pice.jpg';
 }

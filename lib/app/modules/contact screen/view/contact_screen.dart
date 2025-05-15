@@ -3,7 +3,6 @@ import 'package:portfolio/app/modules/contact%20screen/widgets/custom_textfield.
 import 'package:portfolio/app/modules/contact%20screen/widgets/send_btn.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
-
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
@@ -15,16 +14,20 @@ class ContactScreen extends StatelessWidget {
     return Responsive(
       mobile: _body(width, colorScheme),
       desktop: _body(width, colorScheme),
-      tablet: _body(width, colorScheme),
+      tablet: _body(width, colorScheme, true),
     );
   }
 
-  Widget _body(double width, ColorScheme colorScheme) {
+  Widget _body(double width, ColorScheme colorScheme, [bool isTablet = false]) {
     return Container(
-      color: colorScheme.surface, // Background adapts to theme
+      color: colorScheme.surface.withOpacity(.3),
       padding: EdgeInsets.symmetric(
         vertical: 30,
-        horizontal: width < 600 ? 20 : width / 3, // Handle small screens
+        horizontal: width < 600
+            ? 20
+            : isTablet
+                ? width / 6
+                : width / 3,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

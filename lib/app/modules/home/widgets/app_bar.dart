@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-      color: colorScheme.background,
+      //color: colorScheme.,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
               Text(
                 'Govind P',
                 style: TextStyle(
-                  color: colorScheme.onBackground,
+                  color: colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -34,8 +34,9 @@ class CustomAppBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _menuItem(context, 'Home'),
-                    _menuItem(context, 'Work'),
-                    _menuItem(context, 'About'),
+                    _menuItem(context, 'Skill'),
+                    _menuItem(context, 'Projects'),
+                    _menuItem(context, 'Experience'),
                     _menuItem(context, 'Contact'),
                   ],
                 ),
@@ -60,7 +61,7 @@ class CustomAppBar extends StatelessWidget {
         label: label,
         onTap: () => onMenuTap(label),
         activeColor: colorScheme.primary,
-        textColor: colorScheme.onBackground,
+        textColor: colorScheme.onSurface,
       ),
     );
   }
