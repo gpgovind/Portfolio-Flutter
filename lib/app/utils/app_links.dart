@@ -7,4 +7,9 @@ class AppLinks {
   static const resume = 'assets/image/Govind P resume.pdf';
   static const flutter3dImage = 'assets/image/flutter.png';
   static const backgroundPice = 'assets/image/background_pice.jpg';
+  static const pixelsxLink =
+      'https://drive.google.com/file/d/1Ds9bqIm-BNOjjMRFjO7gKCMxjiXbyqjK/view?usp=sharing';
+  static const mediWaterLink = 'https://www.amazon.com/gp/product/B0CW19R3CQ';
+  static const formSheetId = 'https://formspree.io/f/mkgbgkkn';
+  static const thirdProject = 'assets/image/todo.png';
 }

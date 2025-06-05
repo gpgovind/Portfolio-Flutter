@@ -16,6 +16,7 @@ class AppTheme {
       surface: AppColor.darkSurface,
       onSurface: AppColor.darkText,
     ),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: AppColor.darkBackground,
     primaryColor: AppColor.primary,
     textTheme: GoogleFonts.poppinsTextTheme(

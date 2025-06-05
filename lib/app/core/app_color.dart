@@ -32,11 +32,3 @@ class AppColor {
 
 
 
-// enum Tu {
-//   mage,
-//   necromancer,
-//   martialArtist;
-
-//   int get choose =>
-//       switch (this) { mage => 20, necromancer => 40, martialArtist => 39 };
-// }

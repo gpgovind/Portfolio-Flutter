@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/modules/card%20screen/controller/card_screen_controller.dart';
 import 'package:portfolio/app/modules/card%20screen/widgets/card_widget.dart';
 import 'package:portfolio/app/utils/app_links.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
@@ -19,10 +20,10 @@ class CardScreen extends StatelessWidget {
             Text(
               'Projects',
               style: TextStyle(
-                 fontSize: 33,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            letterSpacing: 1.5,
+                fontSize: 33,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.5,
               ),
             ),
             _body(),
@@ -34,13 +35,13 @@ class CardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           Text(
+            Text(
               'Projects',
               style: TextStyle(
-                 fontSize: 33,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            letterSpacing: 1.5,
+                fontSize: 33,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.5,
               ),
             ),
             _bodyDesktop()
@@ -52,13 +53,13 @@ class CardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           Text(
+            Text(
               'Projects',
               style: TextStyle(
-                 fontSize: 33,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            letterSpacing: 1.5,
+                fontSize: 33,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.5,
               ),
             ),
             _body(),
@@ -75,6 +76,7 @@ class CardScreen extends StatelessWidget {
       children: List.generate(
         3,
         (index) => ProjectCard(
+          onPressed: () => CardScreenController.links[index](),
           image: projects[index]['image']!,
           projectName: projects[index]['name']!,
           description: projects[index]['description']!,
@@ -90,6 +92,7 @@ class CardScreen extends StatelessWidget {
       children: List.generate(
         3,
         (index) => ProjectCard(
+            onPressed: () => CardScreenController.links[index](),
             image: projects[index]['image']!,
             projectName: projects[index]['name']!,
             description: projects[index]['description']!),
@@ -114,7 +117,7 @@ class CardScreen extends StatelessWidget {
       'name': 'TaskMaster',
       'description':
           'A task management app that allows users to create, update, and track their tasks. It uses Riverpod for state management and SQLite for local storage to persist user data.',
-      'image': AppLinks.secondProject,
+      'image': AppLinks.thirdProject,
     }
   ];
 }

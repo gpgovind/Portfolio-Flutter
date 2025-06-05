@@ -4,10 +4,12 @@ class ProjectCard extends StatefulWidget {
   final String projectName;
   final String description;
   final String image;
+  final void Function() onPressed;
   const ProjectCard(
       {super.key,
       required this.projectName,
       required this.description,
+      required this.onPressed,
       required this.image});
 
   @override
@@ -45,7 +47,11 @@ class _ProjectCardState extends State<ProjectCard> {
           width: cardWidth,
           height: cardHeight,
           decoration: BoxDecoration(
-            color: colorScheme.surface, // Dynamic background
+            color: Colors.transparent, 
+            border: Border.all(
+              color: colorScheme.primary.withOpacity(0.2),
+              width: 1,
+            ),
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               if (isHovered)
@@ -62,7 +68,7 @@ class _ProjectCardState extends State<ProjectCard> {
               Container(
                 height: 150,
                 decoration: BoxDecoration(
-                  color: colorScheme.primary, // Adaptive header
+                  color: Colors.black12, 
                   image: DecorationImage(image: AssetImage(widget.image)),
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
@@ -101,7 +107,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     Row(
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: widget.onPressed,
                           style: TextButton.styleFrom(
                             foregroundColor: colorScheme.primary,
                           ),

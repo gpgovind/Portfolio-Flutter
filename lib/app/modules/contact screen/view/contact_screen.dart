@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/modules/contact%20screen/controller/contact_screen_controller.dart';
 import 'package:portfolio/app/modules/contact%20screen/widgets/custom_textfield.dart';
 import 'package:portfolio/app/modules/contact%20screen/widgets/send_btn.dart';
+import 'package:portfolio/app/utils/app_toast_message.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 
-class ContactScreen extends StatelessWidget {
+class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
+
+  @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
+  final nameTextController = TextEditingController();
+  final emailTextController = TextEditingController();
+  final messageTextController = TextEditingController();
+
+  bool isSending = false;
+
+  @override
+  void dispose() {
+    nameTextController.dispose();
+    emailTextController.dispose();
+    messageTextController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,25 +75,52 @@ class ContactScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           CustomTextField(
-            controller: TextEditingController(),
+            controller: nameTextController,
             hintText: 'Your Name',
           ),
           const SizedBox(height: 10),
           CustomTextField(
-            controller: TextEditingController(),
+            controller: emailTextController,
             hintText: 'Your Email',
           ),
           const SizedBox(height: 10),
           CustomTextField(
             isMaxLin: true,
-            controller: TextEditingController(),
+            controller: messageTextController,
             hintText: 'Your Message',
           ),
           const SizedBox(height: 20),
-          CustomElevatedButton(
-            onPressed: () {},
-            text: 'Send Message',
-          ),
+          isSending
+              ? CircularProgressIndicator()
+              : CustomElevatedButton(
+                  onPressed: () {
+                    setState(() => isSending = true);
+                    final name = nameTextController.text;
+                    final email = emailTextController.text;
+                    final message = messageTextController.text;
+
+                    if (name.isNotEmpty &&
+                        email.isNotEmpty &&
+                        message.isNotEmpty) {
+                      ContactScreenController.sendFormMessage(
+                              name: name, email: email, message: message)
+                          .then((success) {
+                        if (success) {
+                          nameTextController.clear();
+                          emailTextController.clear();
+                          messageTextController.clear();
+                          setState(() => isSending = false);
+                        } else {
+                          setState(() => isSending = false);
+                        }
+                      });
+                    } else {
+                      APPToastMessage.shoW("Fill Form to send mail", true);
+                      setState(() => isSending = false);
+                    }
+                  },
+                  text: 'Send Message',
+                ),
         ],
       ),
     );

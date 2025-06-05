@@ -42,7 +42,9 @@ dependencies:
   lottie: ^3.2.0
   html: ^0.15.4 
   animated_text_kit: ^4.2.3
-  flutter_animate: ^4.5.2
+  flutter_animate: ^4.5.2 
+  url_launcher: ^6.3.1 
+  toastification: ^2.3.0
 
 dev_dependencies:
   flutter_test:

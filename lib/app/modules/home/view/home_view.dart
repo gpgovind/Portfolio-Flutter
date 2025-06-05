@@ -6,6 +6,7 @@ import 'package:portfolio/app/modules/footer/view/footer_screen.dart';
 import 'package:portfolio/app/modules/skills/view/skill_view.dart';
 import 'package:portfolio/app/modules/text%20screen/view/text_screen.dart';
 import 'package:portfolio/app/utils/app_links.dart';
+import 'package:portfolio/app/utils/frag_shader.dart';
 import 'package:portfolio/app/utils/responsive_helper.dart';
 import '../widgets/app_bar.dart';
 
@@ -39,16 +40,18 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MediaQuery.of(context).size.width < 600 ? _drawer(context):null,
+      drawer: MediaQuery.of(context).size.width < 600 ? _drawer(context) : null,
       body: Stack(
         children: [
-          Positioned(
+        //  MeteorShowerBackground(),
+           Positioned(
               top: 1,
               right: 2,
               child: Image.asset(
                 fit: BoxFit.cover,
                 AppLinks.backgroundPice,
               )),
+                  BirdMigrationBackground(),
           CustomScrollView(
             controller: scrollController,
             slivers: [
@@ -59,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                 // backgroundColor: Color(0xFF11071F),
                 toolbarHeight: 140,
                 flexibleSpace: Responsive(
-                 mobile: mobileDrawer(),
+                  mobile: mobileDrawer(),
                   desktop: _customAppBar(),
                   tablet: _customAppBar(),
                 ),
@@ -122,8 +125,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget mobileDrawer(
-    ) {
+  Widget mobileDrawer() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       color: Colors.black,
@@ -138,7 +140,6 @@ class _HomeViewState extends State<HomeView> {
               fontSize: 20,
             ),
           ),
-       
         ],
       ),
     );
